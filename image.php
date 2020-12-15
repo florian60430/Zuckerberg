@@ -1,4 +1,5 @@
-<?php include 'fonction.php'; include 'config.php'; ?>
+<?php include 'fonction.php';
+include 'config.php'; ?>
 <!DOCTYPE html>
 <html>
 
@@ -16,9 +17,8 @@
 <?php
 
 try {
-    //$bdd = new PDO('mysql:host=localhost;dbname=marc', 'florian', '60430');
-      $bdd = new PDO('mysql:host='.$host.';dbname='.$dbName,''.$login.'' , ''.$mdp.'');
-   
+    $bdd = new PDO('mysql:host=' . $host . ';dbname=' . $dbName, '' . $login . '', '' . $mdp . '');
+
     $connect =  true;
 } catch (Exception $e) {
 
@@ -26,32 +26,86 @@ try {
     $connect = false;
 }
 
-$nbImageBdd = 5 ;
-$image = new image($bdd);
+if (isset($indice1) && isset($indice1)) {
+    $indice1++;
+    $indice2--;
+} else {
 
-$id1 = $image->getRand($nbImageBdd);
-$id2 = $image->getRand($nbImageBdd);
+    $manga = new image($bdd);
+    $id1 = $manga->getMaxId();
+    $id2 = $manga->getMinId();
+}
 
-$id1 = $image->verifMatch($id1, $id2);
-$link1 = $image->getPath($id1);
-$link2 = $image->getPath($id2);
+$link1 = $manga->getPath($id1);
+$link2 = $manga->getPath($id2);
 
-$name1 = $image->getName($id1);
-$name2 = $image->getName($id2);
+$name1 = $manga->getName($id1);
+$name2 = $manga->getName($id2);
 
+/*
+$id1 = $manga->getManga($indice1);
+$id2 = $manga->getManga($indice2);
+$i = 0;
+
+$TabMangaDejaShuffle = $manga->listMangeDejaShuffle(1);
+echo "id deja shuffle = " . $TabMangaDejaShuffle[0] . "<br>";
+echo "id = " . $id1 . "<br>";
+
+
+
+if ($id1 == $TabMangaDejaShuffle[0]) {
+    $indice1++;
+    $id1 = $manga->getManga($indice1);
+}
+
+echo "id deja shuffle = " . $TabMangaDejaShuffle[0] . "<br>";
+echo "id = " . $id1 . "<br>";
+
+
+$id1 = $manga->verifMatch($id1, $id2);
+
+$link1 = $manga->getPath($id1);
+$link2 = $manga->getPath($id2);
+
+$name1 = $manga->getName($id1);
+$name2 = $manga->getName($id2);
+
+
+
+// on doit verifier si l'image afficher n'est pas déja voté par le user et si elle n'est pas déja affiché 
+
+
+*/
 
 ?>
+
+<style>
+
+.btn1{
+
+    height: 200px;
+    width: 400px;
+    background-image: url("img/dbz.jpg");
+}
+
+</style> 
 
 <body>
     <div class="container">
         <div class="row">
             <div class="col-6">
-                <a href="index.php"> <img src="<?php echo $link1; ?>" class="image1"> </a>
-                <div class="name"><?php echo $name1;?></div>
+                <form action="" method="post">
+                    <input type="submit" class="btn1" value="">
+                </form>
+                <a href=""> <img src="<?php echo $link1; ?>" class="image1"> </a>
+                <div class="name"><?php echo $name1; ?></div>
             </div>
             <div class="col-6">
-                <a href="index.php"> <img src="<?php echo $link2; ?>" class="image2"></a>
-                <div class="name"><?php echo $name2;?></div>
+                <form action="" method="post">
+                    <input type="submit" class="btn2" value="">
+                </form>
+                <a href=""> <img src="<?php echo $link2; ?>" class="image2"></a>
+                <div class="name"><?php echo $name2; ?></div>
             </div>
         </div>
     </div>

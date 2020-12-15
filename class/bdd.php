@@ -1,3 +1,3 @@
 <?php
-    $bdd = new PDO('mysql:host=localhost; dbname=Zuck; charset=utf8', 'admin', 'root');
+    $bdd = new PDO('mysql:host=localhost; dbname=marc; charset=utf8', 'root', '');
 ?>
