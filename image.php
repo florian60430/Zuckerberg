@@ -16,8 +16,8 @@
 <?php
 
 try {
-    $bdd = new PDO('mysql:host=localhost;dbname=marc', 'root', '');
-   // $bdd = new PDO('mysql:localhost;dbname='.$dbName,''.$login.'' , ''.$mdp.'');
+    //$bdd = new PDO('mysql:host=localhost;dbname=marc', 'florian', '60430');
+      $bdd = new PDO('mysql:host='.$host.';dbname='.$dbName,''.$login.'' , ''.$mdp.'');
    
     $connect =  true;
 } catch (Exception $e) {

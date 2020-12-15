@@ -1,7 +1,7 @@
 <?php 
 
-$host = "127.0.0.1";
-$login = "florian";
-$mdp = "60430";
+$host = "localhost";
+$login = "root";
+$mdp = "";
 $dbName = "marc";
 ?>
