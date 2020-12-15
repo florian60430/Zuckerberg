@@ -26,20 +26,19 @@ try {
     $connect = false;
 }
 
-$nbImageBdd = 1 ;
+$nbImageBdd = 5 ;
 $image = new image($bdd);
 
 $id1 = $image->getRand($nbImageBdd);
 $id2 = $image->getRand($nbImageBdd);
 
+$id1 = $image->verifMatch($id1, $id2);
+$link1 = $image->getPath($id1);
+$link2 = $image->getPath($id2);
 
-//$id1 = $image->verifMatch($id1, $id2);
+$name1 = $image->getName($id1);
+$name2 = $image->getName($id2);
 
-echo "<div>".$id1."</div>"; 
-echo "<div>".$id2."</div>";
-
-$link1 = "img/dbz.jpg";
-$link2 = "img/one.jpg";
 
 ?>
 
@@ -48,9 +47,11 @@ $link2 = "img/one.jpg";
         <div class="row">
             <div class="col-6">
                 <a href="index.php"> <img src="<?php echo $link1; ?>" class="image1"> </a>
+                <div class="name"><?php echo $name1;?></div>
             </div>
             <div class="col-6">
                 <a href="index.php"> <img src="<?php echo $link2; ?>" class="image2"></a>
+                <div class="name"><?php echo $name2;?></div>
             </div>
         </div>
     </div>
