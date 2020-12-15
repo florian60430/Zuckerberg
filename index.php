@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require("class/class_user.php");
     require("class/bdd.php");
 
