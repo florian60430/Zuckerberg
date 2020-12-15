@@ -4,90 +4,82 @@ class image
 
     private $_nbManga;
     private $_bdd;
-    private $_listIdManga;
-    private $_indice;
+    private $_note;
 
 
     function __construct($bdd)
 
     {
         $this->_bdd = $bdd;
-
-       /* $i = 0;
-        $brutData = $this->_bdd->query("SELECT * from manga");
-        while ($data = $brutData->fetch()) {
-            $listIdManga[$i] = $data['id_manga'];
-            $i++;
-        }
-
-        $this->_listIdManga = $listIdManga;
-
-        $brutData = $this->_bdd->query("SELECT * from manga");
-
-        $Data = $brutData->fetch();
-        $this->_nbManga = $brutData->rowcount() - 1;*/
     }
 
-    public function getMaxId() {
+    public function getNote($idManga){
 
-        $dataBrut = $this->_bdd->query('SELECT * FROM manga WHERE id_manga = (SELECT MAX(id_manga) FROM manga)');
-        $maxId = $dataBrut->fetch();
-        return $maxId[0];
+        $data = $this->_bdd->query("SELECT * from manga where id_manga=".$idManga."");
+        $tabData = $data->fetch();
+        $this->_note = $tabData['note'];
+        return $this->_note;
     }
 
-    public function getMinId() {
+    public function setNote($idManga, $note) {
 
-        $dataBrut = $this->_bdd->query('SELECT * FROM manga WHERE id_manga = (SELECT MIN(id_manga) FROM manga)');
-        $minId = $dataBrut->fetch();
-        return $minId[0];
+        $this->_bdd->query("UPDATE manga SET note = ".$note." WHERE id_manga =".$idManga."");
     }
-/*
-    public function getIndice()
+
+
+
+    public function getIdManga($idUser) {
+
+// on verifie si l'utilisateur n'a pas déja voté pour tout les manga 
+
+//Nombre de manga dans la table
+$data = $this->_bdd->query("SELECT COUNT(id_manga) as manga from manga");
+$TabTotalManga = $data->fetch();
+
+//Nombre de manga liké par le profil
+$data2 = $this->_bdd->query("SELECT COUNT(id_user) as Totalmanga from assoc WHERE id_user =" . $idUser ."");
+$TabTotalMangaLike = $data2->fetch();
+
+
+if($TabTotalManga[0] != $TabTotalMangaLike[0]) {
+
+// on initialise l'id du manga à 0
+$idManga = 0;
+
+// on vérifie si l'id correspond à un id attribué à un manga en base
+$requete = $this->_bdd->prepare("SELECT * from manga where id_manga =".$idManga."");
+$requete->execute();
+$userExist = $requete->rowcount();
+
+// on vérifie si l'id du manga n'a pas déja été voté par le user 
+$data = $this->_bdd->query("SELECT * from assoc WHERE id_user =" . $idUser . " AND id_manga = " . $idManga . "");
+$tabData = $data->fetch();
+$state = $tabData["value"];
+
+while ($userExist == 0 || $state == 1) 
+
     {
-        $indice = rand(0,  $this->_nbManga);
-        return $indice;
+        $idManga++;
+
+// on vérifie si l'id correspond à un id attribué à un manga en base
+$requete = $this->_bdd->prepare("SELECT * from manga where id_manga =".$idManga."");
+$requete->execute();
+$userExist = $requete->rowcount();
+
+// on vérifie si l'id du manga n'a pas déja été voté par le user 
+$data = $this->_bdd->query("SELECT * from assoc WHERE id_user =" . $idUser . " AND id_manga = " . $idManga . "");
+$tabData = $data->fetch();
+$state = $tabData["value"];
+
     }
+} else {
 
-    public function getManga($indice)
-    {
-        return $this->_listIdManga[$indice];
-    }
-
-    public function verifMatch($id1, $id2)
-    {
-        $brutData = $this->_bdd->query("SELECT * from manga");
-        $i = 0;
-        while ($data = $brutData->fetch()) {
-            $idImage[$i] = $data['id_manga'];
-            $i++;
-        }
-
-        while ($id1 == $id2) {
-
-            $rand = rand(0,  $this->_nbManga);
-            $id1 = $idImage[$rand];
-        }
-
-        return $id1;
+    echo "vous avez deja tout voté";
+}       
+return $idManga;
     }
 
 
-    public function listMangeDejaShuffle($idUser) 
-    {
-
-        $i = 0;
-        $brutData = $this->_bdd->query("SELECT * from assoc where id_user=" . $idUser . "");
-        while ($data = $brutData->fetch()) {
-
-            $mangaDejaShuffle[$i] = $data["id_manga"];
-            $i++;
-        }
-        return $mangaDejaShuffle;
-
-
-    }
-
-*/
     public function getPath($id)
     {
         $brutData = $this->_bdd->query("SELECT adresse from manga where id_manga =" . $id . "");
@@ -100,36 +92,12 @@ class image
     {
         $brutData = $this->_bdd->query("SELECT nom from manga where id_manga =" . $id . "");
         $name = $brutData->fetch();
-
         return $name[0];
     }
 
-/*
-    public function MangadejaShuffle($idUser)
-    {
+    public function ajoutePoint($idManga) {
 
-        $i = 0;
 
-        $brutData = $this->_bdd->query("SELECT * from assoc where id_user=" . $idUser . "");
-        while ($data = $brutData->fetch()) {
-
-            $mangaDejaShuffle[$i] = $data["id_manga"];
-            $i++;
-        }
-        return $mangaDejaShuffle;
-        // je regarde si l'utilisateur à déja voté pour l'image si oui je prend le prochain id dans la bdd
 
     }
-
-    public function verifMangaDejaShuffle($idmanga, $idMangaDejaShuffle)
-    {
-
-        if ($idmanga == $idMangaDejaShuffle) {
-
-            return true;
-        } else {
-
-            return false;
-        }
-    }*/
 }

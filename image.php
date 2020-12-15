@@ -25,90 +25,83 @@ try {
     $e->getMessage();
     $connect = false;
 }
+/*
+if(isset($_POST['id1'])) {
 
-if (isset($indice1) && isset($indice1)) {
-    $indice1++;
-    $indice2--;
-} else {
+    $dataBrut = $bdd->query("SELECT note from manga where id_manga=".$_POST['id1']."");
+    $data = $dataBrut->fetch();
+    $point = $data[0] + 10; 
+
+    $bdd->query("UPDATE manga SET note = ".$point." where id_manga =".$_POST['id1']."");
+    echo "UPDATE manga SET note = ".$point." where id_manga =".$_POST['id1']."";
+  
+} 
+
+if(isset($_POST['id2'])) {
+
+    $dataBrut = $bdd->query("SELECT note from manga where id_manga=".$_POST['id2']."");
+    $data = $dataBrut->fetch();
+    $point = $data[0] + 10;
+
+    $bdd->query("UPDATE manga SET note = ".$point." where id_manga =".$_POST['id2']."");
+ 
+}*/
+if(isset($_POST['btn1'])) {
+
+$manga = new image($bdd);
+$id1 = $manga->getIdManga(1);
+$link1 = $manga->getPath($id1);
+$note = $manga->getNote($id1);
+$newNote = $note + 10;
+$manga->setNote($id1, $newNote);
+    
+} else if (isset($_POST['btn2'])) {
 
     $manga = new image($bdd);
-    $id1 = $manga->getMaxId();
-    $id2 = $manga->getMinId();
+    $id2 = $manga->getIdManga(1);
+    $link2 = $manga->getPath($id2);
+    $note = $manga->getNote($id2);
+    $newNote = $note + 10;
+    $manga->setNote($id2, $newNote);
+
 }
 
+else {
+
+$manga = new image($bdd);
+$id1 = $manga->getIdManga(1);
 $link1 = $manga->getPath($id1);
-$link2 = $manga->getPath($id2);
-
+/*$link2 = $manga->getPath($id2);
+*/
+$link1 = $manga->getPath($id1);
 $name1 = $manga->getName($id1);
-$name2 = $manga->getName($id2);
-
-/*
-$id1 = $manga->getManga($indice1);
-$id2 = $manga->getManga($indice2);
-$i = 0;
-
-$TabMangaDejaShuffle = $manga->listMangeDejaShuffle(1);
-echo "id deja shuffle = " . $TabMangaDejaShuffle[0] . "<br>";
-echo "id = " . $id1 . "<br>";
-
-
-
-if ($id1 == $TabMangaDejaShuffle[0]) {
-    $indice1++;
-    $id1 = $manga->getManga($indice1);
 }
-
-echo "id deja shuffle = " . $TabMangaDejaShuffle[0] . "<br>";
-echo "id = " . $id1 . "<br>";
-
-
-$id1 = $manga->verifMatch($id1, $id2);
-
-$link1 = $manga->getPath($id1);
-$link2 = $manga->getPath($id2);
-
-$name1 = $manga->getName($id1);
-$name2 = $manga->getName($id2);
-
-
-
-// on doit verifier si l'image afficher n'est pas déja voté par le user et si elle n'est pas déja affiché 
-
+/*$name2 = $manga->getName($id2);
 
 */
 
+// on doit verifier si l'image afficher n'est pas déja voté par le user et si elle n'est pas déja affiché 
+
 ?>
-
-<style>
-
-.btn1{
-
-    height: 200px;
-    width: 400px;
-    background-image: url("img/dbz.jpg");
-}
-
-</style> 
-
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-6">
-                <form action="" method="post">
-                    <input type="submit" class="btn1" value="">
-                </form>
-                <a href=""> <img src="<?php echo $link1; ?>" class="image1"> </a>
-                <div class="name"><?php echo $name1; ?></div>
+            <div class="col-6">   
+                <a href=""> <img src="<?php echo $link1?>" class="image1"></a>
             </div>
-            <div class="col-6">
-                <form action="" method="post">
-                    <input type="submit" class="btn2" value="">
-                </form>
-                <a href=""> <img src="<?php echo $link2; ?>" class="image2"></a>
-                <div class="name"><?php echo $name2; ?></div>
+            <form action="" method="POST">
+                <input type="submit" value="<?php echo $name1; ?>" name="btn1">
+            </form>
+            <div class="col-6">  
+            <a href=""> <img src="<?php echo $link2?>" class="image2"></a>
+            </div>
+            <form action="" method="POST">
+                <input type="submit" value="<?php echo $name2; ?>" name="btn2">
+            </form> 
             </div>
         </div>
     </div>
 </body>
 
 </html>
+

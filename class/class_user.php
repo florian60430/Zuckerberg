@@ -27,7 +27,7 @@
         public function signin($mail,$password,$passwordconfirm){
             if(!empty($mail) && !empty($password) && !empty($passwordconfirm)){
                 if($password == $passwordconfirm){
-                    $reqUser = $this->_bdd->query("INSERT INTO `user`(`id_user`, `mail`, `password`) VALUES (NULL,".$mail.",".$password.")");
+                    $reqUser = $this->_bdd->query("INSERT INTO `user`(`id_user`, `mail`, `password`) VALUES (NULL,'".$mail."','".$password."')");
                     return "<h6 class='green-text'><i>Vous êtes inscrit!</i></h6>";
                 }
                 else{
