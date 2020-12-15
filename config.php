@@ -3,5 +3,5 @@
 $host = "localhost";
 $login = "root";
 $mdp = "";
-$dbName = "marc";
+$dbName = "zuckerberg";
 ?>
