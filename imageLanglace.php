@@ -49,7 +49,7 @@ include "fonctions.php";
        
         //$_SESSION["ids"]=array(2,3,4,5,6,7);
         
-        aleatoireImageEnSession();
+        if ($result = aleatoireImageEnSession () == true) {
     ?>
     <nav class="red">
         <div class="nav-wrapper">
@@ -70,9 +70,12 @@ include "fonctions.php";
             </div>
             <div id="game" class="row">
                 
-                    <?php recupDonneePhoto($_SESSION["id1"],$_SESSION["id2"]) ?>
+                    <?php recupDonneePhoto($_SESSION["id1"],$_SESSION["id2"]);
+        }
+        else {
+            echo "Vous avez assez joué pour aujourdh'hui"; 
             
-            
+                    ?>
             </div>
         </div>
     </div>
