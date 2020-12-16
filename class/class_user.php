@@ -12,6 +12,7 @@
                 $userExist = $reqUser->rowCount();
                 $userInfo = $reqUser->fetch();
                 if($userExist != 0){
+                    session_start();
                     $_SESSION['logged'] = true;
                     $_SESSION['id_user'] = $userInfo['id'];
                     header('Location:main.php');
