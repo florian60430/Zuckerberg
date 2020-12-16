@@ -24,10 +24,9 @@ include "fonctions.php";
        
        try {
 
-
-        $host = "192.168.64.56";
-        $login = "florian";
-        $mdp = "60430";
+        $host = "localhost";
+        $login = "root";
+        $mdp = "";
         $dbName = "marc";
 
         $bdd = new PDO('mysql:host=' . $host . ';dbname=' . $dbName, '' . $login . '', '' . $mdp . '');
@@ -51,13 +50,7 @@ include "fonctions.php";
         //$_SESSION["ids"]=array(2,3,4,5,6,7);
         
         aleatoireImageEnSession();
-       
-
-    
-
     ?>
-
-
     <h1>Le choix</h1>
 
     <div class="container">

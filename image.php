@@ -14,7 +14,7 @@ include 'config.php'; ?>
     <link rel="stylesheet" href="">
 </head>
 
-<?php
+<?php 
 
 try {
     $bdd = new PDO('mysql:host=' . $host . ';dbname=' . $dbName, '' . $login . '', '' . $mdp . '');
