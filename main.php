@@ -10,6 +10,8 @@ $classement = $manga->getClassement();
 <html>
 
 <head>
+    <title>Classement - Zuck</title>
+    <link rel="icon" type="image/png" href="img/icon.png" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,7 +20,7 @@ $classement = $manga->getClassement();
 <body style="background-image: url('img/back.jpg');background-attachment: fixed;background-position: center center;">
     <nav class="red">
         <div class="nav-wrapper">
-        <a href="#" class="brand-logo right"><b>Zeuqueurbeurgue</b></a>
+        <a href="#" class="brand-logo right"><b>Zeuqueurbeurgue!</b></a>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
             <li><a href="imageLanglace.php">Shuffle</a></li>
             <li class="active"><a href="main.php">Classement</a></li>

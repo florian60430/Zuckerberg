@@ -7,6 +7,8 @@ include "fonctions.php";
 <html>
 
 <head>
+    <title>Shuffle - Zuck</title>
+    <link rel="icon" type="image/png" href="img/icon.png" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
