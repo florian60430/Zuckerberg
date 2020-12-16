@@ -20,10 +20,6 @@ if (isset($_GET['img'])) {
         $idModif = $_SESSION["id2"];
     }
     if (aleatoireImageEnSession()) {
-?>
-    
-
-<?php
         recupDonneePhoto($_SESSION["id1"], $_SESSION["id2"]);
     } else {
        
