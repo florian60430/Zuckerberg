@@ -66,7 +66,7 @@ include "fonctions.php";
                     <b>Zeuqueurbeurgue!</b>
                 </h1>
             </div>
-        <?php if(isset($mdr)){//if ($result = aleatoireImageEnSession () == true) { ?>
+        <?php if ($result = aleatoireImageEnSession () == true) { ?>
             <div id="game" class="row">
                 
                     <?php recupDonneePhoto($_SESSION["id1"],$_SESSION["id2"]);
