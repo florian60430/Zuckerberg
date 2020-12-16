@@ -30,7 +30,7 @@ include "fonctions.php";
 
         $bdd = new PDO('mysql:host=' . $host . ';dbname=' . $dbName, '' . $login . '', '' . $mdp . '');
     
-        $result = $bdd->query("SELECT * from manga"); 
+        $result = $bdd->query("SELECT manga.id_manga FROM manga LEFT JOIN assoc ON manga.id_manga = assoc.id_manga WHERE etat IS NULL"); 
         $_SESSION["ids"] = array();
 
 
