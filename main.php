@@ -3,7 +3,6 @@ session_start();
 require("class/class_manga.php");
 require("class/bdd.php");
 
-echo "votre id est ".$_SESSION['id_user'];
 $manga = new manga($bdd);
 $classement = $manga->getClassement();
 ?>
