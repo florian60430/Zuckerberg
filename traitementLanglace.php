@@ -21,13 +21,13 @@ if (isset($_GET['img'])) {
     }
     if (aleatoireImageEnSession()) {
 ?>
-        <div>Hello tu ha valider l'image id N° <?php echo $idModif; ?></div>
+    
 
 <?php
         recupDonneePhoto($_SESSION["id1"], $_SESSION["id2"]);
     } else {
-        echo "<div>Hello tu ha valider l'image id N°" . $idModif . " FIN DU JEU</div>";
-    };
+       
+    }
 } else {
-    echo "<div>Hello Personne</div> ";
+ 
 } ?>
