@@ -3,6 +3,7 @@ session_start();
 require("class/class_manga.php");
 require("class/bdd.php");
 
+echo $_SESSION['id_user'];
 $manga = new manga($bdd);
 $classement = $manga->getClassement();
 ?>
@@ -34,7 +35,7 @@ $classement = $manga->getClassement();
         </div>
         <div class="row">
             <div class="center-align">
-                <a href="image.php">
+                <a href="imageLanglace.php">
                     <button class="btn-large waves-effect waves-light"><b>VOTER!</b></button>
                 </a>
             </div>

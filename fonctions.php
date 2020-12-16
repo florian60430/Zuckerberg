@@ -35,18 +35,14 @@ function aleatoireImageEnSession(){
 
             return true;
         }
-
-     
-
-
 }
 
 //recup les donnée image des des images en sessions
 function recupDonneePhoto($id1,$id2){
 
-    $host = "192.168.64.56";
-    $login = "florian";
-    $mdp = "60430";
+    $host = "localhost";
+    $login = "root";
+    $mdp = "";
     $dbName = "marc";
 
     $bdd = new PDO('mysql:host=' . $host . ';dbname=' . $dbName, '' . $login . '', '' . $mdp . '');
@@ -74,5 +70,7 @@ function recupDonneePhoto($id1,$id2){
     <?php
 
 }
+
+
 
 ?>
