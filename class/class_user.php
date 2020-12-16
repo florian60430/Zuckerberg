@@ -7,7 +7,7 @@
         }
         public function login($mail,$password){
             if(!empty($mail) && !empty($password)){
-                $reqUser = $this->_bdd->prepare("SELECT * FROM user WHERE pseudo = ? AND password = mdp");
+                $reqUser = $this->_bdd->prepare("SELECT * FROM user WHERE pseudo = ? AND password = ?");
                 $reqUser->execute(array($mail,$password));
                 $userExist = $reqUser->rowCount();
                 $userInfo = $reqUser->fetch();
