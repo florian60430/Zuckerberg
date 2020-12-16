@@ -1,8 +1,8 @@
 <?php
 session_start();
 include "fonctions.php";
+include "config.php" ;
 ?>
-
 <!DOCTYPE html>
 <html>
 
@@ -18,36 +18,15 @@ include "fonctions.php";
     <link rel="stylesheet" href="">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
-
 <body style="background-image: url('img/back.jpg');background-attachment: fixed;background-position: center center;">
-
     <?php
-
-    try {
-
-        $host = "localhost";
-        $login = "root";
-        $mdp = "";
-        $dbName = "marc";
-
-        $bdd = new PDO('mysql:host=' . $host . ';dbname=' . $dbName, '' . $login . '', '' . $mdp . '');
-
+        
         $result = $bdd->query("SELECT manga.id_manga FROM manga LEFT JOIN assoc ON manga.id_manga = assoc.id_manga WHERE etat IS NULL");
         $_SESSION["ids"] = array();
 
         while ($tab = $result->fetch()) {
             array_push($_SESSION["ids"], $tab['id_manga']);
         }
-
-        $connect =  true;
-    } catch (Exception $e) {
-
-        $e->getMessage();
-        $connect = false;
-    }
-
-
-    //$_SESSION["ids"]=array(2,3,4,5,6,7);
     ?>
     <nav class="red">
         <div class="nav-wrapper">
@@ -72,7 +51,7 @@ include "fonctions.php";
                 <?php if ($result = aleatoireImageEnSession() == true) { ?>
                     <div id="game" class="row">
 
-                    <?php recupDonneePhoto($_SESSION["id1"], $_SESSION["id2"]);
+                    <?php recupDonneePhoto($_SESSION["id1"], $_SESSION["id2"], $bdd);
                 } else {
                     header('Location:main.php');
                 } ?>
@@ -91,7 +70,6 @@ include "fonctions.php";
                 <?php } ?>
         </div>
     </div>
-
     <script type="text/javascript" src="ajax.js"></script>
 </body>
 

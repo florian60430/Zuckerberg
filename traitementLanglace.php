@@ -3,7 +3,7 @@ session_start();
 
 include "fonctions.php";
 include 'config.php';
-$bdd = new PDO('mysql:host=' . $host . ';dbname=' . $dbName, '' . $login . '', '' . $mdp . '');
+
 //echo sera le flux de sortie vers le fichier xml Json.
 if (isset($_GET['img'])) {
     $idModif = 0;
@@ -20,7 +20,7 @@ if (isset($_GET['img'])) {
         $idModif = $_SESSION["id2"];
     }
     if (aleatoireImageEnSession()) {
-        recupDonneePhoto($_SESSION["id1"], $_SESSION["id2"]);
+        recupDonneePhoto($_SESSION["id1"], $_SESSION["id2"], $bdd);
     } else {
        
     }

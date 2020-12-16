@@ -1,4 +1,4 @@
-<?php
+<?php include 'config.php';
 
 function rangeTableau($tableau)
 {
@@ -36,15 +36,8 @@ function aleatoireImageEnSession()
 }
 
 //recup les donnée image des des images en sessions
-function recupDonneePhoto($id1, $id2)
+function recupDonneePhoto($id1, $id2, $bdd)
 {
-
-    $host = "localhost";
-    $login = "root";
-    $mdp = "";
-    $dbName = "marc";
-
-    $bdd = new PDO('mysql:host=' . $host . ';dbname=' . $dbName, '' . $login . '', '' . $mdp . '');
 
     $result1 = $bdd->query("select * from manga where id_manga='" . $id1 . "'");
     $tab1 = $result1->fetch();
@@ -72,7 +65,7 @@ function recupDonneePhoto($id1, $id2)
                 </a>
             </div>
         </div>
-    </div>  
+    </div>
     <div class="row">
         <div class='col s6'>
             <div class="center-align">
@@ -86,9 +79,5 @@ function recupDonneePhoto($id1, $id2)
         </div>
     </div>
 <?php
-
 }
-
-
-
 ?>
