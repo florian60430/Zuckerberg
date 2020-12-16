@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 16 déc. 2020 à 20:17
+-- Généré le :  mer. 16 déc. 2020 à 22:09
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `assoc` (
   `id_manga` int(11) NOT NULL,
   `etat` int(11) NOT NULL,
   PRIMARY KEY (`id_assoc`)
-) ENGINE=MyISAM AUTO_INCREMENT=347 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=693 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -66,28 +66,13 @@ INSERT INTO `manga` (`id_manga`, `adresse`, `nom`, `note`) VALUES
 (9, 'img/attaquedestitans.jpg', 'L\'Attaque des Titan', 0),
 (8, 'img/Akira.jpg', 'Akira', 0),
 (10, 'img/bleach.jpg', 'Bleach', 0),
-(11, 'img/chevalier.jpg', 'Les Chevalier du Zod', 0),
-(12, 'img/fullmetal.jpg', 'Fullmetal Alchemist', 0),
-(13, 'img/gto.jpg\r\n', 'GTO', 0),
-(14, 'img/hunter.jpg', 'Hunter X Hunter', 0),
-(15, 'img/monster.jpg', 'Monster', 0),
-(16, 'img/onepuchman.jpg', 'One Punch Man', 0),
 (17, 'img/pluto.jpg', 'Pluto (je connais pas non plus tqt)', 0),
-(18, 'img/quartier.jpeg', 'Quartier Lointain', 0),
-(19, 'img/soul.jpg', 'Dark Soul', 0),
-(20, 'img/yugi.jpg', ' Yu-Gi-Oh!', 0),
-(21, 'img/yugigx.jpg', ' Yu-Gi-Oh GX', 0),
-(22, 'img/pokemon.jpg', 'Pokemon', 0),
-(23, 'img/Akira.jpg', 'Akira', 0),
-(24, 'img/attaquedestitans.jpg', 'L\'Attaque des Titan', 0),
-(25, 'img/bleach.jpg', 'Bleach', 0),
 (26, 'img/chevalier.jpg', 'Les Chevalier du Zod', 0),
 (27, 'img/fullmetal.jpg', 'Fullmetal Alchemist', 0),
 (28, 'img/gto.jpg\r\n', 'GTO', 0),
 (29, 'img/hunter.jpg', 'Hunter X Hunter', 0),
 (30, 'img/monster.jpg', 'Monster', 0),
 (31, 'img/onepuchman.jpg', 'One Punch Man', 0),
-(32, 'img/pluto.jpg', 'Pluto', 0),
 (33, 'img/quartier.jpeg', 'Quartier Lointain', 0),
 (34, 'img/soul.jpg', 'Dark Soul', 0),
 (35, 'img/yugi.jpg', ' Yu-Gi-Oh!', 0),
@@ -106,14 +91,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `pseudo` varchar(20) NOT NULL,
   `mdp` varchar(50) NOT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `user`
---
-
-INSERT INTO `user` (`id_user`, `pseudo`, `mdp`) VALUES
-(1, 'florian', '60430');
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

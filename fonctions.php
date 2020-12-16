@@ -1,11 +1,23 @@
 <?php include 'config.php';
 
-function selectIdManga($bdd) {
+
+function ajoutePoints($bdd, $idManga)
+{
+    $bdd->query("UPDATE manga SET note = note + 10 WHERE id_manga = " . $idManga . "");
+}
+
+function changeEtat($bdd)
+{
+    $bdd->query("INSERT INTO `assoc` (`id_assoc`, `id_user`, `id_manga`, `etat`) VALUES (NULL, " . $_SESSION['id_user'] . ", " . $_SESSION['id1'] . ", 1), (NULL, " . $_SESSION['id_user'] . ", " . $_SESSION['id2'] . ", 1)");
+}
+
+function selectIdManga($bdd)
+{
 
     $_SESSION["ids"] = array();
-        
-    $result = $bdd->query("SELECT manga.id_manga FROM manga LEFT JOIN assoc ON manga.id_manga = assoc.id_manga WHERE etat IS NULL OR etat != 1 AND assoc.id_user IS NULL OR assoc.id_user != ".$_SESSION['id_user']."");
-        while ($tab = $result->fetch()) {
+
+    $result = $bdd->query("SELECT manga.id_manga FROM manga LEFT JOIN assoc ON manga.id_manga = assoc.id_manga WHERE etat IS NULL OR etat != 1 AND assoc.id_user IS NULL OR assoc.id_user != " . $_SESSION['id_user'] . "");
+    while ($tab = $result->fetch()) {
         array_push($_SESSION["ids"], $tab['id_manga']);
     }
 }
@@ -23,10 +35,11 @@ function rangeTableau($tableau)
     return $newTab;
 }
 
-function aleatoireImageEnSession()
+function aleatoireImageEnSession($bdd)
 {
-    if (sizeof($_SESSION["ids"]) < 2) {
+    selectIdManga($bdd);
 
+    if (sizeof($_SESSION["ids"]) < 2) {
         return false;
     } else {
 
@@ -49,7 +62,6 @@ function aleatoireImageEnSession()
 //recup les donnée image des des images en sessions
 function recupDonneePhoto($id1, $id2, $bdd)
 {
-
     $result1 = $bdd->query("select * from manga where id_manga='" . $id1 . "'");
     $tab1 = $result1->fetch();
     $result2 = $bdd->query("select * from manga where id_manga='" . $id2 . "'");

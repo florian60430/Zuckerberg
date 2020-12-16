@@ -20,7 +20,7 @@ include "config.php";
 </head>
 
 <?php
-selectIdManga($bdd);
+//selectIdManga($bdd);
 ?>
 
 <body style="background-image: url('img/back.jpg');background-attachment: fixed;background-position: center center;">
@@ -44,7 +44,7 @@ selectIdManga($bdd);
                 </h1>
             </div>
             <?php if (isset($_SESSION['logged']) == true) { ?>
-                <?php if ($result = aleatoireImageEnSession() == true) { ?>
+                <?php if ($result = aleatoireImageEnSession($bdd) == true) { ?>
                     <div id="game" class="row">
                     <?php recupDonneePhoto($_SESSION["id1"], $_SESSION["id2"], $bdd);
                 } else {
