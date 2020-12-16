@@ -6,7 +6,7 @@
             $this->_bdd = $bdd;
         }
         public function getClassement(){
-            $reqClassement = $this->_bdd->query("SELECT * FROM manga ORDER BY note ASC");
+            $reqClassement = $this->_bdd->query("SELECT * FROM manga ORDER BY note DESC");
             $i = 0;
             while($classement = $reqClassement->fetch()){
                 $classementFinal[$i] = $classement;
