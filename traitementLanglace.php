@@ -12,7 +12,6 @@ if (isset($_GET['img'])) {
 
         $bdd->query("UPDATE manga SET note = note + 10 WHERE id_manga = " . $_SESSION['id1'] . "");
         $bdd->query("INSERT INTO `assoc` (`id_assoc`, `id_user`, `id_manga`, `etat`) VALUES (NULL, ".$_SESSION['id_user'].", ".$_SESSION['id1'].", 1), (NULL, ".$_SESSION['id_user'].", ".$_SESSION['id2'].", 1)");
-        echo "INSERT INTO `assoc` (`id_assoc`, `id_user`, `id_manga`, `etat`) VALUES (NULL, ".$_SESSION['id_user'].", ".$_SESSION['id1'].", '1'), (NULL, ".$_SESSION['id_user'].", ".$_SESSION['id2'].", '1')";
         $idModif = $_SESSION["id1"];
     } else {
 

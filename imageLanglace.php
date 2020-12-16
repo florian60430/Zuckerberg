@@ -31,12 +31,13 @@ include "fonctions.php";
 
         $bdd = new PDO('mysql:host=' . $host . ';dbname=' . $dbName, '' . $login . '', '' . $mdp . '');
     
-        $result = $bdd->query("select * from manga"); 
-        $_SESSION["ids"]=   array();
+        $result = $bdd->query("SELECT * from manga"); 
+        $_SESSION["ids"] = array();
+
+
        
         while ($tab = $result->fetch()){
             array_push($_SESSION["ids"],$tab['id_manga']);
-            echo "coucou";
         }
 
             $connect =  true;
@@ -51,7 +52,6 @@ include "fonctions.php";
         
         aleatoireImageEnSession();
     ?>
-    <h1>Le choix</h1>
 
     <div class="container">
         <div id="game" class="row">
