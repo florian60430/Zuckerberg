@@ -36,73 +36,73 @@ if (isset($_POST['subSignin'])) {
         } else {
             echo "<div class='row' id='login' style='display:none'>";
         } ?>
-            <form method="POST" action="">
-                <div class="row">
-                    <div class="input-field col s8 offset-s2">
-                        <input type="text" name="mailLogin" id="mailLogin" class="validate">
-                        <label for="mailLogin">Adresse mail</label>
-                    </div>
+        <form method="POST" action="">
+            <div class="row">
+                <div class="input-field col s8 offset-s2">
+                    <input type="text" name="mailLogin" id="mailLogin" class="validate">
+                    <label for="mailLogin">Adresse mail</label>
                 </div>
-                <div class="row">
-                    <div class="input-field col s8 offset-s2">
-                        <input type="password" name="passwordLogin" id="passwordLogin" class="validate">
-                        <label for="passwordLogin">Mot de passe</label>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s8 offset-s2">
+                    <input type="password" name="passwordLogin" id="passwordLogin" class="validate">
+                    <label for="passwordLogin">Mot de passe</label>
                 </div>
-                <div class="row">
-                    <?php if (isset($messageLogin)) {
-                        echo $messageLogin;
-                    } ?>
+            </div>
+            <div class="row">
+                <?php if (isset($messageLogin)) {
+                    echo $messageLogin;
+                } ?>
+            </div>
+            <div class="row">
+                <a href="#" onclick="displaySignin()">Inscription</a>
+                <div class="right-align">
+                    <button class="btn waves-effect waves-light" type="submit" name="subLogin">Se connecter
+                        <i class="material-icons right">send</i>
+                    </button>
                 </div>
-                <div class="row">
-                    <a href="#" onclick="displaySignin()">Inscription</a>
-                    <div class="right-align">
-                        <button class="btn waves-effect waves-light" type="submit" name="subLogin">Se connecter
-                            <i class="material-icons right">send</i>
-                        </button>
-                    </div>
-                </div>
-            </form>
+            </div>
+        </form>
+    </div>
+    <?php if (isset($messageSignin)) {
+        echo "<div class='row' id='signin'>";
+    } else {
+        echo "<div class='row' id='signin' style='display:none'>";
+    } ?>
+    <form method="POST" action="">
+        <div class="row">
+            <div class="input-field col s8 offset-s2">
+                <input type="text" name="mailSignin" id="mailSignin" class="validate">
+                <label for="mailSignin">Adresse mail</label>
+            </div>
         </div>
-        <?php if (isset($messageSignin)) {
-            echo "<div class='row' id='signin'>";
-        } else {
-            echo "<div class='row' id='signin' style='display:none'>";
-        } ?>
-            <form method="POST" action="">
-                <div class="row">
-                    <div class="input-field col s8 offset-s2">
-                        <input type="text" name="mailSignin" id="mailSignin" class="validate">
-                        <label for="mailSignin">Adresse mail</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s8 offset-s2">
-                        <input type="password" name="passwordSignin" id="passwordSignin" class="validate">
-                        <label for="passwordSignin">Mot de passe</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s8 offset-s2">
-                        <input type="password" name="confirmPasswordSignin" id="confirmPasswordSignin" class="validate">
-                        <label for="confirmPasswordSignin">Confirmer mot de passe</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <?php if (isset($messageSignin)) {
-                        echo $messageSignin;
-                    } ?>
-                </div>
-                <div class="row">
-                    <a href="#" onclick="displayLogin()">Connexion</a>
-                    <div class="right-align">
-                        <button class="btn waves-effect waves-light" type="submit" name="subSignin">S'inscrire
-                            <i class="material-icons right">send</i>
-                        </button>
-                    </div>
-                </div>
-            </form>
+        <div class="row">
+            <div class="input-field col s8 offset-s2">
+                <input type="password" name="passwordSignin" id="passwordSignin" class="validate">
+                <label for="passwordSignin">Mot de passe</label>
+            </div>
         </div>
+        <div class="row">
+            <div class="input-field col s8 offset-s2">
+                <input type="password" name="confirmPasswordSignin" id="confirmPasswordSignin" class="validate">
+                <label for="confirmPasswordSignin">Confirmer mot de passe</label>
+            </div>
+        </div>
+        <div class="row">
+            <?php if (isset($messageSignin)) {
+                echo $messageSignin;
+            } ?>
+        </div>
+        <div class="row">
+            <a href="#" onclick="displayLogin()">Connexion</a>
+            <div class="right-align">
+                <button class="btn waves-effect waves-light" type="submit" name="subSignin">S'inscrire
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </div>
+    </form>
+    </div>
     </div>
     <script type="text/javascript" src="js/materialize.min.js"></script>
 </body>
