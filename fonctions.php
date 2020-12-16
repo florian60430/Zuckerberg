@@ -8,15 +8,17 @@ function ajoutePoints($bdd, $idManga)
 
 function changeEtat($bdd)
 {
-    $bdd->query("INSERT INTO `assoc` (`id_assoc`, `id_user`, `id_manga`, `etat`) VALUES (NULL, " . $_SESSION['id_user'] . ", " . $_SESSION['id1'] . ", 1), (NULL, " . $_SESSION['id_user'] . ", " . $_SESSION['id2'] . ", 1)");
+    $bdd->query("UPDATE `assoc` SET `etat` = 1 WHERE id_user = " . $_SESSION['id_user'] . " AND id_manga = " . $_SESSION['id1'] . "");
+    $bdd->query("UPDATE `assoc` SET `etat` = 1 WHERE id_user = " . $_SESSION['id_user'] . " AND id_manga = " . $_SESSION['id2'] . "");
 }
 
 function selectIdManga($bdd)
 {
-
     $_SESSION["ids"] = array();
-
-    $result = $bdd->query("SELECT manga.id_manga FROM manga LEFT JOIN assoc ON manga.id_manga = assoc.id_manga WHERE etat IS NULL OR etat != 1 AND assoc.id_user IS NULL OR assoc.id_user != " . $_SESSION['id_user'] . "");
+// Il faut choisir tout les manga dont l'état dans la table d'association n'existe pas ou si il existe il faut select tout le reste sauf ceux dont l'id est le notre
+// SELECT manga.id_manga FROM manga LEFT JOIN assoc ON manga.id_manga = assoc.id_manga WHERE assoc.id_user != 7
+// SELECT manga.id_manga FROM manga LEFT JOIN assoc ON manga.id_manga = assoc.id_manga WHERE assoc.id_user = 7 AND assoc.etat = 0
+    $result = $bdd->query("SELECT manga.id_manga FROM manga LEFT JOIN assoc ON manga.id_manga = assoc.id_manga WHERE assoc.id_user = ".$_SESSION['id_user']." AND assoc.etat = 0");
     while ($tab = $result->fetch()) {
         array_push($_SESSION["ids"], $tab['id_manga']);
     }

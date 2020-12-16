@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 16 déc. 2020 à 22:09
+-- Généré le :  mer. 16 déc. 2020 à 23:13
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `assoc` (
   `id_manga` int(11) NOT NULL,
   `etat` int(11) NOT NULL,
   PRIMARY KEY (`id_assoc`)
-) ENGINE=MyISAM AUTO_INCREMENT=693 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1260 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `manga` (
   `nom` varchar(50) NOT NULL,
   `note` int(10) NOT NULL,
   PRIMARY KEY (`id_manga`)
-) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `manga`
@@ -77,7 +77,8 @@ INSERT INTO `manga` (`id_manga`, `adresse`, `nom`, `note`) VALUES
 (34, 'img/soul.jpg', 'Dark Soul', 0),
 (35, 'img/yugi.jpg', ' Yu-Gi-Oh!', 0),
 (36, 'img/yugigx.jpg', ' Yu-Gi-Oh GX', 0),
-(37, 'img/pokemon.jpg', 'Pokemon', 0);
+(37, 'img/pokemon.jpg', 'Pokemon', 0),
+(38, 'img/olive.jpg', 'Olive Et Tom', 0);
 
 -- --------------------------------------------------------
 
@@ -91,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `pseudo` varchar(20) NOT NULL,
   `mdp` varchar(50) NOT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
