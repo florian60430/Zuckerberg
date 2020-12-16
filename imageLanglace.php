@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include "fonctions.php";
 ?>
@@ -22,8 +22,8 @@ include "fonctions.php";
 <body style="background-image: url('img/back.jpg');background-attachment: fixed;background-position: center center;">
 
     <?php
-       
-       try {
+
+    try {
 
         $host = "localhost";
         $login = "root";
@@ -31,33 +31,35 @@ include "fonctions.php";
         $dbName = "marc";
 
         $bdd = new PDO('mysql:host=' . $host . ';dbname=' . $dbName, '' . $login . '', '' . $mdp . '');
-    
-        $result = $bdd->query("SELECT * from manga"); 
+
+        $result = $bdd->query("SELECT * from manga");
         $_SESSION["ids"] = array();
 
 
-       
-        while ($tab = $result->fetch()){
-            array_push($_SESSION["ids"],$tab['id_manga']);
+
+        while ($tab = $result->fetch()) {
+            array_push($_SESSION["ids"], $tab['id_manga']);
         }
 
-            $connect =  true;
-        } catch (Exception $e) {
-        
-            $e->getMessage();
-            $connect = false;
-        } 
+        $connect =  true;
+    } catch (Exception $e) {
 
-       
-        //$_SESSION["ids"]=array(2,3,4,5,6,7);
+        $e->getMessage();
+        $connect = false;
+    }
+
+
+    //$_SESSION["ids"]=array(2,3,4,5,6,7);
     ?>
     <nav class="red">
         <div class="nav-wrapper">
             <a href="#" class="brand-logo right"><b>Zeuqueurbeurgue!</b></a>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li class="active"><a href="imageLanglace.php">Shuffle</a></li>
-                <li><a href="main.php">Classement</a></li>
-                <li><a href="logout.php">Deconnexion</a></li>
+                <?php if (isset($_SESSION['logged']) && $_SESSION['logged'] == true) { ?>
+                    <li class="active"><a href="imageLanglace.php">Shuffle</a></li>
+                    <li><a href="main.php">Classement</a></li>
+                    <li><a href="logout.php">Deconnexion</a></li>
+                <?php } ?>
             </ul>
         </div>
     </nav>
@@ -68,18 +70,31 @@ include "fonctions.php";
                     <b>Zeuqueurbeurgue!</b>
                 </h1>
             </div>
-        <?php if ($result = aleatoireImageEnSession () == true) { ?>
-            <div id="game" class="row">
-                
-                    <?php recupDonneePhoto($_SESSION["id1"],$_SESSION["id2"]);
-        }
-        else {
-            header('Location:main.php');
-        }?>
-            </div>
+            <?php if (isset($_SESSION['logged']) && $_SESSION['logged'] == true) { ?>
+                <?php if ($result = aleatoireImageEnSession() == true) { ?>
+                    <div id="game" class="row">
+
+                    <?php recupDonneePhoto($_SESSION["id1"], $_SESSION["id2"]);
+                } else {
+                    header('Location:main.php');
+                } ?>
+                    </div>
+                <?php } else { ?>
+                    <div class="row">
+                        <div class="center-align">
+                            <h3 class="red-text">403 : FORBIDDEN</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="center-align">
+                            <a href="index.php">Retour en zone sûre</a>
+                        </div>
+                    </div>
+                <?php } ?>
         </div>
     </div>
 
     <script type="text/javascript" src="ajax.js"></script>
 </body>
+
 </html>
