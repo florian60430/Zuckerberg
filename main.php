@@ -22,7 +22,7 @@ $classement = $manga->getClassement();
         <ul id="nav-mobile" class="left hide-on-med-and-down">
             <li><a href="image.php">Shuffle</a></li>
             <li class="active"><a href="main.php">Classement</a></li>
-            <li><a href="">Deconnexion</a></li>
+            <li><a href="logout.php">Deconnexion</a></li>
         </ul>
         </div>
     </nav>
