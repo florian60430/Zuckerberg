@@ -1,5 +1,16 @@
 <?php include 'config.php';
 
+function selectIdManga($bdd) {
+
+    $_SESSION["ids"] = array();
+        
+    $result = $bdd->query("SELECT manga.id_manga FROM manga LEFT JOIN assoc ON manga.id_manga = assoc.id_manga WHERE etat IS NULL OR etat != 1 AND assoc.id_user IS NULL OR assoc.id_user != ".$_SESSION['id_user']."");
+        while ($tab = $result->fetch()) {
+        array_push($_SESSION["ids"], $tab['id_manga']);
+    }
+}
+
+
 function rangeTableau($tableau)
 {
     $newTab = array();

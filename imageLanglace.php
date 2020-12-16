@@ -1,7 +1,7 @@
 <?php
 session_start();
 include "fonctions.php";
-include "config.php" ;
+include "config.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,16 +18,12 @@ include "config.php" ;
     <link rel="stylesheet" href="">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
-<body style="background-image: url('img/back.jpg');background-attachment: fixed;background-position: center center;">
-    <?php
-        
-        $result = $bdd->query("SELECT manga.id_manga FROM manga LEFT JOIN assoc ON manga.id_manga = assoc.id_manga WHERE etat IS NULL");
-        $_SESSION["ids"] = array();
 
-        while ($tab = $result->fetch()) {
-            array_push($_SESSION["ids"], $tab['id_manga']);
-        }
-    ?>
+<?php
+selectIdManga($bdd);
+?>
+
+<body style="background-image: url('img/back.jpg');background-attachment: fixed;background-position: center center;">
     <nav class="red">
         <div class="nav-wrapper">
             <a href="#" class="brand-logo right"><b>Zeuqueurbeurgue!</b></a>
@@ -47,10 +43,9 @@ include "config.php" ;
                     <b>Zeuqueurbeurgue!</b>
                 </h1>
             </div>
-            <?php if (isset($_SESSION['logged']) && $_SESSION['logged'] == true) { ?>
+            <?php if (isset($_SESSION['logged']) == true) { ?>
                 <?php if ($result = aleatoireImageEnSession() == true) { ?>
                     <div id="game" class="row">
-
                     <?php recupDonneePhoto($_SESSION["id1"], $_SESSION["id2"], $bdd);
                 } else {
                     header('Location:main.php');
