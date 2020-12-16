@@ -35,8 +35,6 @@ include "fonctions.php";
         $result = $bdd->query("SELECT manga.id_manga FROM manga LEFT JOIN assoc ON manga.id_manga = assoc.id_manga WHERE etat IS NULL");
         $_SESSION["ids"] = array();
 
-
-
         while ($tab = $result->fetch()) {
             array_push($_SESSION["ids"], $tab['id_manga']);
         }

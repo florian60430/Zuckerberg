@@ -21,17 +21,15 @@ function aleatoireImageEnSession()
 
         //Choix de la premiere image
         $indice = rand(0, sizeof($_SESSION["ids"]) - 1);
-        //echo "<br> indice = ".$indice;
         $_SESSION["id1"] = $_SESSION["ids"][$indice];
         $_SESSION["ids"][$indice] = '';
         $_SESSION["ids"] = rangeTableau($_SESSION["ids"]);
 
+        //Choix de la seconde
         $indice2 = rand(0, sizeof($_SESSION["ids"]) - 1);
         $_SESSION["id2"] = $_SESSION["ids"][$indice2];
         $_SESSION["ids"][$indice2] = '';
         $_SESSION["ids"] = rangeTableau($_SESSION["ids"]);
-
-
 
         return true;
     }
