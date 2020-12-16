@@ -25,8 +25,8 @@ if (isset($_POST['subSignin'])) {
 <body>
     <div class="container">
         <div class="row">
-            <h1 class="center-align blue-text">
-                <b>Zeuqueurbeurgue</b>
+            <h1 class="center-align red-text">
+                <b>Zeuqueurbeurgue!</b>
             </h1>
         </div>
         <?php if (!isset($messageSignin)) {

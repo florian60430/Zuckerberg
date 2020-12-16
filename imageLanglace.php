@@ -10,15 +10,14 @@ include "fonctions.php";
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 
-<body>
+<body style="background-image: url('img/back.jpg');background-attachment: fixed;background-position: center center;">
 
     <?php
        
@@ -52,13 +51,28 @@ include "fonctions.php";
         
         aleatoireImageEnSession();
     ?>
-
-    <div class="container">
-        <div id="game" class="row">
+    <nav class="red">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo right"><b>Zeuqueurbeurgue!</b></a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li class="active"><a href="image.php">Shuffle</a></li>
+                <li><a href="main.php">Classement</a></li>
+                <li><a href="logout.php">Deconnexion</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="white container z-depth-3" style="margin-top:2%;margin-bottom:2%;padding-top : 2%; padding-bottom : 2%;">
+        <div class="container">
+            <div class="row">
+                <h1 class="center-align red-text">
+                    <b>Zeuqueurbeurgue!</b>
+                </h1>
+            </div>
+            <div id="game" class="row">
+                
+                    <?php recupDonneePhoto($_SESSION["id1"],$_SESSION["id2"]) ?>
             
-                <?php recupDonneePhoto($_SESSION["id1"],$_SESSION["id2"]) ?>
-           
-           
+            
             </div>
         </div>
     </div>
