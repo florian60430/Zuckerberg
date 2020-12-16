@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 16 déc. 2020 à 18:19
+-- Généré le :  mer. 16 déc. 2020 à 18:24
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -73,7 +73,7 @@ INSERT INTO `manga` (`id_manga`, `adresse`, `nom`, `note`) VALUES
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id_user` int(11) NOT NULL AUTO_INCREMENT,
-  `login` varchar(20) NOT NULL,
+  `pseudo` varchar(20) NOT NULL,
   `mdp` varchar(50) NOT NULL,
   PRIMARY KEY (`id_user`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`id_user`, `login`, `mdp`) VALUES
+INSERT INTO `user` (`id_user`, `pseudo`, `mdp`) VALUES
 (1, 'florian', '60430');
 COMMIT;
 
