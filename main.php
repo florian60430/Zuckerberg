@@ -20,7 +20,7 @@ $classement = $manga->getClassement();
         <div class="nav-wrapper">
         <a href="#" class="brand-logo right"><b>Zeuqueurbeurgue</b></a>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="image.php">Shuffle</a></li>
+            <li><a href="imageLanglace.php">Shuffle</a></li>
             <li class="active"><a href="main.php">Classement</a></li>
             <li><a href="logout.php">Deconnexion</a></li>
         </ul>

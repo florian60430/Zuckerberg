@@ -30,7 +30,7 @@ include "fonctions.php";
 
         $bdd = new PDO('mysql:host=' . $host . ';dbname=' . $dbName, '' . $login . '', '' . $mdp . '');
     
-        $result = $bdd->query("SELECT manga.id_manga FROM manga LEFT JOIN assoc ON manga.id_manga = assoc.id_manga WHERE etat IS NULL"); 
+        $result = $bdd->query("SELECT * from manga"); 
         $_SESSION["ids"] = array();
 
 
@@ -48,14 +48,12 @@ include "fonctions.php";
 
        
         //$_SESSION["ids"]=array(2,3,4,5,6,7);
-        
-        if ($result = aleatoireImageEnSession () == true) {
     ?>
     <nav class="red">
         <div class="nav-wrapper">
             <a href="#" class="brand-logo right"><b>Zeuqueurbeurgue!</b></a>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li class="active"><a href="image.php">Shuffle</a></li>
+                <li class="active"><a href="imageLanglace.php">Shuffle</a></li>
                 <li><a href="main.php">Classement</a></li>
                 <li><a href="logout.php">Deconnexion</a></li>
             </ul>
@@ -68,13 +66,13 @@ include "fonctions.php";
                     <b>Zeuqueurbeurgue!</b>
                 </h1>
             </div>
+        <?php if(isset($mdr)){//if ($result = aleatoireImageEnSession () == true) { ?>
             <div id="game" class="row">
                 
                     <?php recupDonneePhoto($_SESSION["id1"],$_SESSION["id2"]);
         }
         else {
-            echo "Vous avez assez joué pour aujourdh'hui"; 
-            
+            header('Location:main.php');
         }?>
             </div>
         </div>
