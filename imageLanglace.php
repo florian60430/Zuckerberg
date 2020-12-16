@@ -75,7 +75,7 @@ include "fonctions.php";
         else {
             echo "Vous avez assez joué pour aujourdh'hui"; 
             
-                    ?>
+        }?>
             </div>
         </div>
     </div>
