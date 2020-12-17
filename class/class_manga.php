@@ -19,6 +19,8 @@ class manga
         $this->_name = $tabData['nom'];
         $this->_note = $tabData['note'];
         $this->_path = $tabData['adresse'];
+        
+        $data->closeCursor();
     }
 
     /* METHODE GET */
@@ -72,6 +74,8 @@ class manga
             $classement[$i] = $tabData;
             $i++;
         }
+        $data->closeCursor();
+        
         return $classement;
     }
 }

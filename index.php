@@ -1,12 +1,15 @@
-<?php
+<?php session_start();
 include 'config.php';
 include 'class/class_user.php';
 include 'class/class_manga.php';
-session_start();
+
 
 $user = new user($bdd, session_id());
 $manga = new manga($bdd, 2);
-$user->assocMangaUser(); ?>
+
+$_SESSION['id_user'] = $user->getId();
+$_SESSION['id_session'] = $user->getIdSession();
+?>
 <html>
 
 <head>
@@ -23,4 +26,5 @@ $user->assocMangaUser(); ?>
     <script type="text/javascript" src="js/materialize.min.js"></script>
 
 </body>
+
 </html>

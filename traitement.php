@@ -19,8 +19,7 @@ if (isset($_GET['img'])) {
    if (aleatoireImageEnSession($bdd)) {
         recupDonneePhoto($_SESSION["id1"], $_SESSION["id2"], $bdd);
     } else {
-        
-       
+
     }
 } else {
  

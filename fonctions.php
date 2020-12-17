@@ -1,14 +1,18 @@
 <?php include 'config.php';
 
-function verifImageRestant($idSession, $bdd){
+
+function verifImageRestant($idSession, $bdd)
+{
 
     $data = $bdd->query("SELECT manga.id_manga FROM manga LEFT JOIN assoc ON manga.id_manga = assoc.id_manga WHERE assoc.id_user = " . $_SESSION['id_user'] . " AND assoc.etat = 0");
-    if($data->rowcount() < 1 ) {
+    if ($data->rowcount() < 1) {
 
         return false;
     } else {
         return true;
     }
+
+    $data->closeCursor();
 }
 
 function ajoutePoints($bdd, $idManga)
@@ -24,14 +28,25 @@ function changeEtat($bdd)
 
 function selectIdManga($bdd)
 {
+
     $_SESSION["ids"] = array();
-    // Il faut choisir tout les manga dont l'état dans la table d'association n'existe pas ou si il existe il faut select tout le reste sauf ceux dont l'id est le notre
-    // SELECT manga.id_manga FROM manga LEFT JOIN assoc ON manga.id_manga = assoc.id_manga WHERE assoc.id_user != 7
-    // SELECT manga.id_manga FROM manga LEFT JOIN assoc ON manga.id_manga = assoc.id_manga WHERE assoc.id_user = 7 AND assoc.etat = 0
-    $result = $bdd->query("SELECT manga.id_manga FROM manga LEFT JOIN assoc ON manga.id_manga = assoc.id_manga WHERE assoc.id_user = " . $_SESSION['id_user'] . " AND assoc.etat = 0");
+    // Il faut choisir dans la table d'assoc les manga ou l'id_user est le notre et leurs etat est à 0
+
+    if (isset($_SESSION['id_user'])) {
+        $result = $bdd->query("SELECT * FROM manga LEFT JOIN assoc ON manga.id_manga = assoc.id_manga WHERE assoc.id_user = " . $_SESSION['id_user'] . " AND assoc.etat = 0");
+    } else {
+
+        $dataUser = $bdd->query("SELECT * from user where id_session = '" . session_id() . "'");
+        $tabDataUser = $dataUser->fetch();
+        $_SESSION['id_user'] = $tabDataUser['id_user'];
+        $result = $bdd->query("SELECT * FROM manga LEFT JOIN assoc ON manga.id_manga = assoc.id_manga WHERE assoc.id_user = " . $_SESSION['id_user'] . " AND assoc.etat = 0");
+    }
+    $i = 0;
     while ($tab = $result->fetch()) {
         array_push($_SESSION["ids"], $tab['id_manga']);
+        $i++;
     }
+    $result->closeCursor();
 }
 
 function rangeTableau($tableau)
@@ -49,13 +64,13 @@ function rangeTableau($tableau)
 function aleatoireImageEnSession($bdd)
 {
     selectIdManga($bdd);
-
     if (sizeof($_SESSION["ids"]) < 2) {
         return false;
     } else {
 
         //Choix de la premiere image
         $indice = rand(0, sizeof($_SESSION["ids"]) - 1);
+
         $_SESSION["id1"] = $_SESSION["ids"][$indice];
         $_SESSION["ids"][$indice] = '';
         $_SESSION["ids"] = rangeTableau($_SESSION["ids"]);
@@ -73,22 +88,41 @@ function aleatoireImageEnSession($bdd)
 //recup les donnée image des des images en sessions
 function recupDonneePhoto($id1, $id2, $bdd)
 {
-    $result1 = $bdd->query("select * from manga where id_manga='" . $id1 . "'");
-    $tab1 = $result1->fetch();
-    $result2 = $bdd->query("select * from manga where id_manga='" . $id2 . "'");
-    $tab2 = $result2->fetch();
+    if (sizeof($_SESSION["ids"]) < 2) { ?>
+            </div>
+            <div class="center">
+                <a href="index.php">
+                    <button class="btn-large waves-effect waves-light"><b>Voir le classement</b></button>
+                </a>
+            </div>
+            <script>
+                var nouvelClass = "center-align green-text flow-text";
+                var nouveauText = "<b>Merci pour vos votes le classement a été mis à jour !</b>";
+                document.getElementById('titre').innerHTML = nouveauText;
+                document.getElementById('titre').className = nouvelClass;
+            </script>
+        </div>
+      <?php  return false;
+    } else {
+        $result1 = $bdd->query("select * from manga where id_manga='" . $id1 . "'");
+        $tab1 = $result1->fetch();
+        $result2 = $bdd->query("select * from manga where id_manga='" . $id2 . "'");
+        $tab2 = $result2->fetch();
 
-    $link1 = $tab1['adresse'];
-    $link2 = $tab2['adresse'];
-    $name1 = $tab1['nom'];
-    $name2 = $tab2['nom'];;
+        $link1 = $tab1['adresse'];
+        $link2 = $tab2['adresse'];
+        $name1 = $tab1['nom'];
+        $name2 = $tab2['nom'];;
+
+      //  echo "taille du tableau dans recupdonnePHOTO: " . sizeof($_SESSION["ids"]) . "<br>";
 ?>
-    <div id="game" class="row hide-on-med-and-up">
+        <!--
+<div class="row hide-on-med-and-up">
         <div class="row">
             <div class="col s12" id="img1">
                 <div class="center-align">
                     <a href="#">
-                        <img style="width:100%;height:auto;" src="<?php echo $link1 ?>" class="image1 z-depth-4">
+                        <img style="width:100%;height:auto;" src="<?php// echo $link1 ?>" class="image1 z-depth-4">
                     </a>
                 </div>
             </div>
@@ -102,14 +136,13 @@ function recupDonneePhoto($id1, $id2, $bdd)
             <div class="col s12">
                 <div class="center-align">
                     <a href="#">
-                        <img style="width:100%;height:auto;" id="img2" src="<?php echo $link2 ?>" class="image1 z-depth-4">
+                        <img style="width:100%;height:auto;" id="img2" src="<?php// echo $link2 ?>" class="image1 z-depth-4">
                     </a>
                 </div>
             </div>
         </div>
-    </div>
-    <div id="game" class="row hide-on-small-only">
-        <div class=row>
+    </div>-->
+        <div class="row hide-on-small-only">
             <div class="col s6" id="img1">
                 <div class="center-align">
                     <a href="#">
@@ -138,7 +171,9 @@ function recupDonneePhoto($id1, $id2, $bdd)
                 </div>
             </div>
         </div>
-    </div>
+        </div>
 <?php
+        return true;
+    }
 }
 ?>

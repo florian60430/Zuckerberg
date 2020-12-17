@@ -1,4 +1,4 @@
-<?php
+<?php 
 include 'config.php';
 
 $listManga = new manga($bdd, 0);
