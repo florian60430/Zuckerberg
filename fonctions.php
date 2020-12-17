@@ -105,4 +105,35 @@ function recupDonneePhoto($id1, $id2, $bdd)
     </div>
 <?php
 }
-?>
+function recupDonneePhotoMobile($id1,$id2,$bdd)
+{
+    $result1 = $bdd->query("select * from manga where id_manga='" . $id1 . "'");
+    $tab1 = $result1->fetch();
+    $result2 = $bdd->query("select * from manga where id_manga='" . $id2 . "'");
+    $tab2 = $result2->fetch();
+
+    $link1 = $tab1['adresse'];
+    $link2 = $tab2['adresse'];
+    $name1 = $tab1['nom'];
+    $name2 = $tab2['nom'];;
+    ?>
+    <div class="row">
+        <div class="col s12" id="img1">
+            <div class="center-align">
+                <a href="#">
+                    <img style="width:100%;height:auto;" src="<?php echo $link1 ?>" class="image1 z-depth-4">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12" id="img2">
+            <div class="center-align">
+                <a href="#">
+                    <img style="width:100%;height:auto;" src="<?php echo $link2 ?>" class="image1 z-depth-4">
+                </a>
+            </div>
+        </div>
+    </div>
+    <?php
+} ?>

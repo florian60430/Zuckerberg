@@ -36,7 +36,7 @@ include "config.php";
             </ul>
         </div>
     </nav>
-    <div class="white container z-depth-3" style="margin-top:2%;margin-bottom:2%;padding-top : 2%; padding-bottom : 2%;">
+    <div class="white container z-depth-3 hide-on-small-only" style="margin-top:2%;margin-bottom:2%;padding-top : 2%; padding-bottom : 2%;">
         <div class="container">
             <div class="row">
                 <h1 class="center-align red-text">
@@ -64,6 +64,32 @@ include "config.php";
                     </div>
                 <?php } ?>
         </div>
+    </div>
+    <div class="hide-on-med-and-up">
+        <div class="row">
+            <h1 class="center-align red-text">
+                <b>Zeuqueurbeurgue!</b>
+            </h1>
+            <?php if (isset($_SESSION['logged']) == true) {
+                if ($result = aleatoireImageEnSession($bdd) == true) {
+                    recupDonneePhotoMobile($_SESSION["id1"], $_SESSION["id2"], $bdd);    
+                } else { 
+                    header('Location:main.php');
+                }
+            } else { ?>
+                <div class="row">
+                    <div class="center-align">
+                        <h3 class="red-text">403 : FORBIDDEN</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="center-align">
+                        <a href="index.php">Retour en zone sûre</a>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+
     </div>
     <script type="text/javascript" src="ajax.js"></script>
 </body>

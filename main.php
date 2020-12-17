@@ -20,7 +20,7 @@ $classement = $manga->getClassement();
 <body style="background-image: url('img/back.jpg');background-attachment: fixed;background-position: center center;">
     <nav class="red">
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo right"><b>Zeuqueurbeurgue!</b></a>
+            <a href="#" class="brand-logo right hide-on-mobile-only"><b>Zeuqueurbeurgue!</b></a>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
                 <?php if (isset($_SESSION['logged']) && $_SESSION['logged'] == true) { ?>
                     <li><a href="imageLanglace.php">Shuffle</a></li>
