@@ -1,5 +1,15 @@
 <?php include 'config.php';
 
+function verifImageRestant($idSession, $bdd){
+
+    $data = $bdd->query("SELECT manga.id_manga FROM manga LEFT JOIN assoc ON manga.id_manga = assoc.id_manga WHERE assoc.id_user = " . $_SESSION['id_user'] . " AND assoc.etat = 0");
+    if($data->rowcount() < 1 ) {
+
+        return false;
+    } else {
+        return true;
+    }
+}
 
 function ajoutePoints($bdd, $idManga)
 {
@@ -23,7 +33,6 @@ function selectIdManga($bdd)
         array_push($_SESSION["ids"], $tab['id_manga']);
     }
 }
-
 
 function rangeTableau($tableau)
 {

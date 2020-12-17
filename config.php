@@ -1,8 +1,8 @@
 <?php 
 
-$host = "192.168.64.83";
-$login = "admin";
- $mdp = "root";
+$host = "localhost";
+$login = "root";
+ $mdp = "";
 $dbName = "marc";
 
     $bdd = new PDO('mysql:host=' . $host . ';dbname=' . $dbName, '' . $login . '', '' . $mdp . '');

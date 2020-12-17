@@ -67,7 +67,11 @@ class manga
     public function getClassement()
     {
         $data = $this->_bdd->query("SELECT * FROM manga ORDER BY note DESC");
-        $tabData = $data->fetch();
-        return $tabData;
+        $i = 0;
+        while ($tabData = $data->fetch()) {
+            $classement[$i] = $tabData;
+            $i++;
+        }
+        return $classement;
     }
 }

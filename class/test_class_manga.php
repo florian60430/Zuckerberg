@@ -29,3 +29,5 @@ echo $manga->getId()."<br>";
 echo $manga->getName()."<br>";
 echo $manga->getNote ()."<br>";
 echo $manga->getPath()."<br>";
+
+

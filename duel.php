@@ -24,18 +24,7 @@ include "config.php";
 ?>
 
 <body style="background-image: url('img/back.jpg');background-attachment: fixed;background-position: center center;">
-    <nav class="red">
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo right hide-on-small-only"><b>Zeuqueurbeurgue!</b></a>
-            <ul id="nav-mobile" class="left">
-                <?php if (isset($_SESSION['logged']) && $_SESSION['logged'] == true) { ?>
-                    <li class="active"><a href="imageLanglace.php">Shuffle</a></li>
-                    <li><a href="main.php">Classement</a></li>
-                    <li><a href="logout.php">Deconnexion</a></li>
-                <?php } ?>
-            </ul>
-        </div>
-    </nav>
+    <?php include 'menu.php' ?>
     <div class="white container z-depth-3" style="margin-top:2%;margin-bottom:2%;padding-top : 2%; padding-bottom : 2%;">
         <div class="container">
             <div class="row">
@@ -47,22 +36,11 @@ include "config.php";
             </div>
             <?php if (isset($_SESSION['logged']) == true) { ?>
                 <?php if ($result = aleatoireImageEnSession($bdd) == true) { ?>
-                    <?php recupDonneePhoto($_SESSION["id1"], $_SESSION["id2"], $bdd);
+            <?php recupDonneePhoto($_SESSION["id1"], $_SESSION["id2"], $bdd);
                 } else {
-                    header('Location:main.php');
-                } ?>
-                <?php } else { ?>
-                    <div class="row">
-                        <div class="center-align">
-                            <h3 class="red-text">403 : FORBIDDEN</h3>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="center-align">
-                            <a href="index.php">Retour en zone sûre</a>
-                        </div>
-                    </div>
-                <?php } ?>
+                    echo "ERREUR POTO";
+                }
+            } ?>
         </div>
     </div>
     <script type="text/javascript" src="ajax.js"></script>
