@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb4+deb9u2
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Client :  localhost:3306
--- Généré le :  Jeu 17 Décembre 2020 à 02:26
--- Version du serveur :  10.1.47-MariaDB-0+deb9u1
--- Version de PHP :  7.0.33-0+deb9u10
+-- Hôte : 127.0.0.1
+-- Généré le :  jeu. 17 déc. 2020 à 12:51
+-- Version du serveur :  5.7.17
+-- Version de PHP :  5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -28,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `assoc` (
   `id_assoc` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
+  `id_session` int(11) NOT NULL,
   `id_manga` int(11) NOT NULL,
   `etat` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -47,7 +49,7 @@ CREATE TABLE `manga` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `manga`
+-- Déchargement des données de la table `manga`
 --
 
 INSERT INTO `manga` (`id_manga`, `adresse`, `nom`, `note`) VALUES
@@ -56,7 +58,7 @@ INSERT INTO `manga` (`id_manga`, `adresse`, `nom`, `note`) VALUES
 (4, 'img/conan.jpg', 'Detective Conan', 0),
 (5, 'img/death.jpg', 'Death Note', 0),
 (6, 'img/fairy.jpg', 'Fairy Tail', 0),
-(7, 'img/Naruto.jpg', 'Naruto', 0),
+(7, 'img/naruto.jpg', 'Naruto', 0),
 (9, 'img/attaquedestitans.jpg', 'L\'Attaque des Titan', 0),
 (8, 'img/akira.jpg', 'Akira', 0),
 (10, 'img/bleach.jpg', 'Bleach', 0),
@@ -82,12 +84,11 @@ INSERT INTO `manga` (`id_manga`, `adresse`, `nom`, `note`) VALUES
 
 CREATE TABLE `user` (
   `id_user` int(11) NOT NULL,
-  `pseudo` varchar(20) NOT NULL,
-  `mdp` varchar(50) NOT NULL
+  `id_session` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Index pour les tables exportées
+-- Index pour les tables déchargées
 --
 
 --
@@ -109,7 +110,7 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT pour les tables exportées
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
@@ -126,7 +127,8 @@ ALTER TABLE `manga`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
